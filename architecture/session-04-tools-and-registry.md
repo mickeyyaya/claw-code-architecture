@@ -1,6 +1,8 @@
 <script setup>
 import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
+import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
+import Quiz from '../.vitepress/theme/Quiz.vue'
 </script>
 
 # Session 4: Tools & Registry
@@ -125,6 +127,13 @@ This is the most powerful (and most dangerous) tool. It can run any command your
 | `tool_search` | Search the tool registry for available tools | ReadOnly |
 
 These tools are about coordination rather than direct action. The `agent` tool is especially interesting -- it lets the AI delegate work to a separate conversation, like a manager assigning a task to a team member.
+
+<Quiz
+  question="Which permission level does the 'bash' tool require?"
+  :options="['ReadOnly — it just reads command output', 'WorkspaceWrite — it can modify files', 'DangerFullAccess — it can execute any system command']"
+  :correct="2"
+  explanation="bash can execute ANY shell command on your computer — including deleting files, installing software, or accessing the network. That's why it requires the highest permission level: DangerFullAccess."
+/>
 
 ---
 

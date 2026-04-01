@@ -1,6 +1,8 @@
 <script setup>
 import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
+import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
+import Quiz from '../.vitepress/theme/Quiz.vue'
 </script>
 
 # Session 3: The Conversation Loop
@@ -72,6 +74,44 @@ This is called **generics** — and it's powerful because:
 - In **tests**, `C` can be a fake that returns scripted responses
 
 Same code, different wiring. We'll explore this more in [Session 10](session-10-testing-patterns.md).
+
+<WhyItWorks technique="The Agentic Loop Pattern">
+
+#### The Everyday Analogy
+<div class="analogy">
+A simple chatbot is like asking a teacher one question and getting one answer. An AI agent is like giving the teacher permission to use books, calculators, and the internet — the teacher reads, calculates, checks sources, and revises until the answer is complete.
+</div>
+
+#### What Would Go Wrong Without It
+<div class="without-it">
+The AI can only answer questions directly without taking real action. You can't build AI that interacts with files, databases, or APIs. Every task requires human intervention.
+</div>
+
+#### Fun Fact
+<div class="fun-fact">
+This pattern became the standard only after 2023 when APIs like Anthropic's tool_use made it practical. Before that, people tried to make AI agents work without structured tool calling and failed repeatedly. Now it's the foundation of every serious AI agent.
+</div>
+
+</WhyItWorks>
+
+<WhyItWorks technique="Trait-Based Dependency Injection">
+
+#### The Everyday Analogy
+<div class="analogy">
+It's like designing a coffee maker that works with any water source (sink, bottle, well) rather than one that only works with your kitchen sink. The runtime doesn't care WHERE the AI responses come from, just that they follow the right format.
+</div>
+
+#### What Would Go Wrong Without It
+<div class="without-it">
+Your tests have to call the real AI API (expensive and slow). You can't swap providers without rewriting the core engine. Multiple developers can't test independently.
+</div>
+
+#### Fun Fact
+<div class="fun-fact">
+Most Java frameworks invented heavy DI containers as libraries. Rust achieves the same power with just traits — no framework needed, no runtime magic. It's compile-time proof that your code works.
+</div>
+
+</WhyItWorks>
 
 <Annotation type="analogy" title="What is trait-based dependency injection?">
 Think of a job posting that says "must have a valid driver's license" rather than "must be John Smith." Any qualified person can fill the role. In Rust, traits like `ApiClient` and `ToolExecutor` are the "job requirements." `ConversationRuntime` doesn't hire a specific person — it accepts anyone who meets the qualifications. In production, that's a real HTTP client. In tests, it's a lightweight stand-in. This pattern is called dependency injection: you "inject" the specific implementation from the outside, keeping the core logic flexible and testable.
@@ -196,6 +236,13 @@ sequenceDiagram
 **Iteration 1:** The AI receives your question, decides it needs to read the file, and responds with a `ToolUse` block. Claw Code checks permissions, runs the tool, and adds the result to the conversation.
 
 **Iteration 2:** The AI receives the updated conversation (now including the file contents), sees it has enough information, and responds with just text. No tool calls means the loop ends.
+
+<Quiz
+  question="What causes the agentic loop to stop?"
+  :options="['The max_iterations limit is reached', 'The AI responds with text only (no tool calls)', 'The user presses Ctrl+C', 'All tools have been used once']"
+  :correct="1"
+  explanation="The loop continues as long as the AI's response contains tool use blocks. When it responds with just text, there are no tools to run, so the loop breaks and returns the final answer."
+/>
 
 ---
 

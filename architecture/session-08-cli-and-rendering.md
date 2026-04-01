@@ -1,6 +1,8 @@
 <script setup>
 import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
+import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
+import Quiz from '../.vitepress/theme/Quiz.vue'
 </script>
 
 # Session 8: The CLI and Terminal Rendering
@@ -140,6 +142,13 @@ sequenceDiagram
 ```
 
 Notice that `run_turn()` is where the REPL connects to the conversation loop from [Session 3](session-03-conversation-loop.md). The REPL handles the user-facing experience; the conversation loop handles the AI interaction.
+
+<Quiz
+  question="What happens when you type '/status' in the Claw Code REPL?"
+  :options="['It gets sent to the AI as a regular message', 'The CLI handles it locally — showing model, tokens, and cost', 'It creates a new session', 'It runs a bash command']"
+  :correct="1"
+  explanation="Slash commands starting with '/' are intercepted by the CLI before reaching the AI. /status is handled locally to display session information like the current model, token usage, and estimated cost."
+/>
 
 ---
 

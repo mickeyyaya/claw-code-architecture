@@ -1,6 +1,8 @@
 <script setup>
 import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
+import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
+import Quiz from '../.vitepress/theme/Quiz.vue'
 </script>
 
 # Session 5: The Permission System
@@ -67,6 +69,19 @@ Everything. The AI can run arbitrary bash commands, fetch web pages, launch sub-
 **Tools allowed (in addition to WorkspaceWrite):** `bash`, `web_search`, `web_fetch`, `agent`, `skill`
 
 > The name literally says "danger" in it — Claw Code wants you to make a conscious choice when granting this level of access.
+
+<WhyItWorks technique="Principle of Least Privilege">
+
+#### The Everyday Analogy
+<div class="analogy">Your friend needs to borrow your car to drive to the store. You give them the car keys — but not your house keys, office keys, or credit cards. They get ONLY what they need. If they lose the car keys, you only lose the car, not your whole life.</div>
+
+#### What Would Go Wrong Without It
+<div class="without-it">A compromised AI tool can delete all your files, steal your passwords, and destroy your project. One mistake cascades into total damage. You can't safely use AI tools because you can't trust them with your whole system.</div>
+
+#### Fun Fact
+<div class="fun-fact">This principle dates back to the 1970s in military computer systems — it's one of the oldest security ideas that still works perfectly. Every major breach usually happened because someone gave tools or users too much access.</div>
+
+</WhyItWorks>
 
 ---
 
@@ -228,6 +243,13 @@ sequenceDiagram
 When a tool call is **denied**, the runtime doesn't just stop. It sends the denial reason back to the AI as an error `ToolResult`. The AI sees the error message, understands it doesn't have permission, and adjusts its approach. For example, if `bash` is denied, the AI might say: "I can't run commands in your current permission mode. Would you like to switch to a higher permission level, or should I just describe what command to run?"
 
 This is the same loop you saw in Session 3 — the permission check is just one gate in the pipeline, sitting between "AI requests tool" and "tool executes."
+
+<Quiz
+  question="If the permission mode is set to WorkspaceWrite and the AI tries to run a bash command, what happens?"
+  :options="['The command runs normally', 'The user is prompted to allow or deny', 'The request is automatically denied', 'The system crashes']"
+  :correct="2"
+  explanation="bash requires DangerFullAccess permission. Since WorkspaceWrite is lower than DangerFullAccess, the request is denied. The AI receives an error result saying 'permission denied' and adjusts its approach."
+/>
 
 ---
 

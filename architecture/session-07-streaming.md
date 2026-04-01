@@ -1,6 +1,8 @@
 <script setup>
 import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
+import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
+import Quiz from '../.vitepress/theme/Quiz.vue'
 </script>
 
 # Session 7: Streaming and the API Client
@@ -56,6 +58,19 @@ Notice the blank line between frames -- that double newline (`\n\n`) is the deli
 <Annotation type="analogy">
 SSE is like a live news ticker scrolling across the bottom of a TV screen. Each headline appears as soon as it's ready -- you don't wait for every headline of the day to be written before the ticker starts scrolling.
 </Annotation>
+
+<WhyItWorks technique="Server-Sent Events (SSE) for AI Streaming">
+
+#### The Everyday Analogy
+<div class="analogy">WebSockets are like a two-way radio where both people can talk anytime. SSE is like listening to a news broadcast — the station sends you info whenever it has something, but you don't need to talk back. For streaming AI responses, you only need one-way communication (server to you), so SSE is simpler and better.</div>
+
+#### What Would Go Wrong Without It
+<div class="without-it">Polling (constantly asking 'is the response ready yet?') wastes bandwidth and battery. WebSockets add complexity you don't need — two-way communication for a one-way stream. Without streaming, the AI response appears all at once after a long wait, making it feel much slower.</div>
+
+#### Fun Fact
+<div class="fun-fact">ChatGPT, Claude, and Gemini all use SSE for streaming responses. It's literally how you see AI text appear word-by-word in your browser. SSE has existed in browsers since 2006 but was mostly ignored until the AI revolution made streaming essential.</div>
+
+</WhyItWorks>
 
 ---
 
@@ -328,6 +343,13 @@ This pattern is called **exponential backoff** and it's used throughout the soft
 <Annotation type="tip">
 When debugging streaming issues, check the `SseParser` buffer first. If frames are arriving but not being parsed, the most common cause is a missing double-newline delimiter -- some proxies or middleware may strip trailing newlines.
 </Annotation>
+
+<Quiz
+  question="Why does Claw Code use SSE instead of WebSockets for streaming AI responses?"
+  :options="['SSE is faster than WebSockets', 'AI streaming only needs one-way communication (server to client), and SSE is simpler for that', 'WebSockets don\\'t work with HTTP', 'SSE uses less memory']"
+  :correct="1"
+  explanation="AI response streaming is fundamentally one-directional — the server pushes tokens to the client. SSE is designed exactly for this pattern, while WebSockets add unnecessary complexity for bidirectional communication that isn't needed here."
+/>
 
 ---
 

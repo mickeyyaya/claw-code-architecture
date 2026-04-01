@@ -1,6 +1,8 @@
 <script setup>
 import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
+import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
+import Quiz from '../.vitepress/theme/Quiz.vue'
 </script>
 
 # Session 10: Testing Patterns
@@ -99,6 +101,25 @@ Both sides use the **exact same** `ConversationRuntime`. The green boxes are run
 <Annotation type="analogy">
 Trait-based dependency injection is like a universal power adapter. Your laptop (the runtime) works the same everywhere -- you just swap the adapter (mock vs real implementation) depending on whether you're in the US or Europe. The laptop doesn't change; only the plug does.
 </Annotation>
+
+<WhyItWorks technique="Trait-Based Testing">
+
+#### The Everyday Analogy
+<div class="analogy">
+Imagine testing a fire alarm system. You don't want to start a real fire every time you test it! Instead, you use a smoke machine (a mock) that produces fake smoke. The alarm can't tell the difference — it responds exactly the same way. That's what mock implementations do: they simulate real behavior so you can test safely and cheaply.
+</div>
+
+#### What Would Go Wrong Without It
+<div class="without-it">
+Every test would need to call the real Anthropic API — costing real money, taking real time, and depending on network availability. Tests would be slow, expensive, and flaky. You couldn't test edge cases like "what if the API returns an error?" because you'd need the API to actually fail.
+</div>
+
+#### Fun Fact
+<div class="fun-fact">
+This testing approach is so effective that the industry has a name for it: "dependency inversion principle" — one of the five SOLID principles of software design coined by Robert C. Martin in the early 2000s. Rust makes it particularly elegant because traits are checked at compile time, so you can't accidentally pass the wrong mock.
+</div>
+
+</WhyItWorks>
 
 ---
 
@@ -377,6 +398,13 @@ You've made it through all ten sessions of the Claw Code Architecture Guide. Her
 You now have a mental map of the entire codebase. When you read the source code, you'll know where to look, what each piece does, and how they fit together. That's a real superpower.
 
 Welcome to the project.
+
+<Quiz
+  question="Why can ConversationRuntime use both a real API client and a mock API client?"
+  :options="['It checks which one to use at runtime with an if statement', 'It uses generic type parameters — any type that implements the ApiClient trait works', 'It has two different run_turn() methods', 'The mock inherits from the real client']"
+  :correct="1"
+  explanation="ConversationRuntime<C: ApiClient, T: ToolExecutor> uses generic type parameters. The C can be ANY type that implements the ApiClient trait. In production that's DefaultRuntimeClient (real HTTP). In tests that's MockApiClient (scripted responses). Same run_turn() code, different wiring."
+/>
 
 ---
 

@@ -1,6 +1,8 @@
 <script setup>
 import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
+import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
+import Quiz from '../.vitepress/theme/Quiz.vue'
 </script>
 
 # Session 6: Configuration and System Prompts
@@ -103,6 +105,25 @@ flowchart TB
 ```
 
 Each box feeds into the next. When two files define the same key, the higher-priority file's value is kept.
+
+<WhyItWorks technique="Cascading Configuration">
+
+#### The Everyday Analogy
+<div class="analogy">
+It's like dressing in layers. Your base layer (user config) applies everywhere you go. Your project config is like a jacket for that specific project. The local config is like adjusting your outfit for the specific weather at your desk. Each layer can override the one below without replacing the whole outfit.
+</div>
+
+#### What Would Go Wrong Without It
+<div class="without-it">
+You'd need separate, complete config files for every project. Changing one setting for one project might break another. Users couldn't customize without editing files that affect the whole team. Deploying to different servers would mean manually rewriting huge config files.
+</div>
+
+#### Fun Fact
+<div class="fun-fact">
+This pattern comes from CSS (Cascading Style Sheets) — "cascading" literally means "later rules override earlier rules." Git copied this idea for its config system (global, system, and per-repo). VS Code, ESLint, and now Claw Code all use the same cascading pattern.
+</div>
+
+</WhyItWorks>
 
 ---
 
@@ -245,6 +266,13 @@ flowchart TD
 Three streams of data -- instruction files, git context, and config -- all flow into the `SystemPromptBuilder`, which combines them with the static sections (intro, system, tasks, actions) to produce the final prompt.
 
 ---
+
+<Quiz
+  question="If the same setting appears in both ~/.claw/settings.json (user) and .claw/settings.local.json (local), which one wins?"
+  :options="['The user setting — it was loaded first', 'The local setting — later configs override earlier ones', 'They merge together', 'It causes an error']"
+  :correct="1"
+  explanation="In a cascading config system, later (more specific) settings override earlier (more general) ones. The local config is the most specific, so it always wins."
+/>
 
 <div class="key-takeaways">
 

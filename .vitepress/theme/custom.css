@@ -13,27 +13,57 @@
   --vp-c-brand-soft: rgba(139, 92, 246, 0.15);
 }
 
-/* Mermaid diagram styling */
-.mermaid-diagram {
+/* Mermaid diagram styling — click to zoom */
+.mermaid-diagram,
+.mermaid {
   margin: 24px 0;
   padding: 20px;
   border-radius: 12px;
   background: var(--vp-c-bg-soft);
   overflow-x: auto;
+  cursor: zoom-in;
+  position: relative;
+  transition: box-shadow 0.2s;
 }
 
-.mermaid-diagram svg {
+.mermaid-diagram:hover,
+.mermaid:hover {
+  box-shadow: 0 2px 12px rgba(139, 92, 246, 0.12);
+}
+
+.mermaid-diagram::after,
+.mermaid::after {
+  content: 'Click to enlarge';
+  position: absolute;
+  bottom: 6px;
+  right: 10px;
+  font-size: 11px;
+  color: var(--vp-c-text-3);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.mermaid-diagram:hover::after,
+.mermaid:hover::after {
+  opacity: 1;
+}
+
+.mermaid-diagram svg,
+.mermaid svg {
   max-width: 100%;
   height: auto;
 }
 
 /* Make mermaid nodes interactive */
-.mermaid-diagram .node {
+.mermaid-diagram .node,
+.mermaid .node {
   cursor: pointer;
   transition: opacity 0.2s;
 }
 
-.mermaid-diagram .node:hover {
+.mermaid-diagram .node:hover,
+.mermaid .node:hover {
   opacity: 0.8;
 }
 

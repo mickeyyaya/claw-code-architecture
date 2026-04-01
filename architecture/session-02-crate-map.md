@@ -1,6 +1,8 @@
 <script setup>
 import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
+import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
+import Quiz from '../.vitepress/theme/Quiz.vue'
 </script>
 
 # Session 2: The Crate Map
@@ -59,7 +61,7 @@ This is the **core engine**. It contains the agentic loop ([Session 3](session-0
 - `oauth.rs` — Authentication
 
 <Annotation type="detail" title="What are generics?">
-You'll see Rust code like `ConversationRuntime<C, T>` in the runtime crate. Generics are like a form letter with blanks: "Dear _____, thank you for your _____." The letter's structure stays the same no matter what you fill in. The `<C, T>` are those blanks — they let you write one piece of code that works with any type that fits the right "shape" (called a trait). This means `ConversationRuntime` doesn't need to know whether it's talking to a real API or a test mock.
+You'll see Rust code like `ConversationRuntime&lt;C, T&gt;` in the runtime crate. Generics are like a form letter with blanks: "Dear _____, thank you for your _____." The letter's structure stays the same no matter what you fill in. The `&lt;C, T&gt;` are those blanks — they let you write one piece of code that works with any type that fits the right "shape" (called a trait). This means `ConversationRuntime` doesn't need to know whether it's talking to a real API or a test mock.
 </Annotation>
 
 ### 3. `api` — The Phone Line
@@ -188,6 +190,13 @@ claw-cli → runtime → api
 
 This is the backbone: the CLI uses the runtime engine, which uses the API client to talk to the AI.
 
+<Quiz
+  question="In the Claw Code architecture, which is the correct dependency chain for the backbone?"
+  :options="['api → runtime → claw-cli', 'claw-cli → runtime → api', 'tools → runtime → claw-cli']"
+  :correct="1"
+  explanation="The CLI uses the runtime, which uses the API client. Data flows from user input (CLI) through the engine (runtime) to the AI (api)."
+/>
+
 ---
 
 ## Where Does the Complexity Live?
@@ -224,6 +233,25 @@ The top three — `claw-cli`, `runtime`, and `tools` — contain about 70% of al
 | `server` | Remote Window | HTTP/SSE server | `lib.rs` |
 | `lsp` | Editor Bridge | Language server client | `client.rs` |
 | `compat-harness` | Comparison Tool | TS manifest extraction | `lib.rs` |
+
+<WhyItWorks technique="Modular Crate Architecture">
+
+#### The Everyday Analogy
+<div class="analogy">
+Building a house as one giant project is chaos. Instead, you have an electrical team, plumbing team, carpentry team — each focused on their specialty. They work in parallel, each can be tested separately, and if you build a second house, you reuse the same teams.
+</div>
+
+#### What Would Go Wrong Without It
+<div class="without-it">
+Everyone edits the same files and breaks each other's code. Testing takes forever. One bug in one feature brings down the whole project. A 10-second compile time becomes 5 minutes.
+</div>
+
+#### Fun Fact
+<div class="fun-fact">
+Rust's workspace design is one reason big Rust projects compile faster than equivalent C++ projects — Cargo only rebuilds what changed, not the entire codebase.
+</div>
+
+</WhyItWorks>
 
 ---
 
