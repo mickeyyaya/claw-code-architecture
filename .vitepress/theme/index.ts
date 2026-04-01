@@ -7,6 +7,7 @@ import ArchitectureHero from "./ArchitectureHero.vue";
 import CrateCard from "./CrateCard.vue";
 import WhyItWorks from "./WhyItWorks.vue";
 import Quiz from "./Quiz.vue";
+import SourceLink from "./SourceLink.vue";
 import "./custom.css";
 
 export default {
@@ -19,5 +20,6 @@ export default {
     app.component("CrateCard", CrateCard);
     app.component("WhyItWorks", WhyItWorks);
     app.component("Quiz", Quiz);
+    app.component("SourceLink", SourceLink);
   },
 } satisfies Theme;

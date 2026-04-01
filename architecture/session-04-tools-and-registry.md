@@ -3,6 +3,7 @@ import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
 import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
 import Quiz from '../.vitepress/theme/Quiz.vue'
+import SourceLink from '../.vitepress/theme/SourceLink.vue'
 </script>
 
 # Session 4: Tools & Registry
@@ -32,6 +33,8 @@ Think of the tool system like a restaurant. The AI is the customer reading the m
 ---
 
 ## How a Tool Is Defined: `ToolSpec`
+
+> **Source:** <SourceLink file="rust/crates/tools/src/lib.rs" />
 
 Every built-in tool starts as a `ToolSpec`:
 

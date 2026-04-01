@@ -3,6 +3,7 @@ import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
 import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
 import Quiz from '../.vitepress/theme/Quiz.vue'
+import SourceLink from '../.vitepress/theme/SourceLink.vue'
 </script>
 
 # Session 6: Configuration and System Prompts
@@ -20,6 +21,8 @@ import Quiz from '../.vitepress/theme/Quiz.vue'
 ---
 
 ## Part 1: Configuration Hierarchy
+
+> **Source:** <SourceLink file="rust/crates/runtime/src/config.rs" />
 
 ### The Analogy
 
@@ -128,6 +131,8 @@ This pattern comes from CSS (Cascading Style Sheets) — "cascading" literally m
 ---
 
 ## Part 2: System Prompt Assembly
+
+> **Source:** <SourceLink file="rust/crates/runtime/src/prompt.rs" />
 
 ### The Analogy
 

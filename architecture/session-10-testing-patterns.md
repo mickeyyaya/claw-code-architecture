@@ -3,6 +3,7 @@ import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
 import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
 import Quiz from '../.vitepress/theme/Quiz.vue'
+import SourceLink from '../.vitepress/theme/SourceLink.vue'
 </script>
 
 # Session 10: Testing Patterns
@@ -172,7 +173,7 @@ Think of it like a recording. You pre-record what the AI would say, and the mock
 
 ### StaticToolExecutor
 
-The codebase already provides a `StaticToolExecutor` (in `conversation.rs`). You register handlers by tool name, and each handler is a function that takes an input string and returns a result:
+The codebase already provides a `StaticToolExecutor` (in <SourceLink file="rust/crates/runtime/src/conversation.rs" />). You register handlers by tool name, and each handler is a function that takes an input string and returns a result:
 
 ```rust
 pub struct StaticToolExecutor {

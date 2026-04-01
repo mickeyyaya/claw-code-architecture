@@ -1,6 +1,7 @@
 <script setup>
 import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
+import SourceLink from '../.vitepress/theme/SourceLink.vue'
 </script>
 
 # Session 9: Extension Points -- Hooks, Plugins, and MCP
@@ -32,7 +33,7 @@ Claw Code supports exactly two hook events:
 | `PreToolUse` | **Before** the tool runs | Allow, deny, or warn |
 | `PostToolUse` | **After** the tool runs | Flag the result, log it, or warn |
 
-Here's the enum from `rust/crates/runtime/src/hooks.rs`:
+Here's the enum from <SourceLink file="rust/crates/runtime/src/hooks.rs" />:
 
 ```rust
 pub enum HookEvent {
@@ -171,7 +172,7 @@ You can have multiple commands per event. They run in order, and a `PreToolUse` 
 Hook scripts run as shell subprocesses with access to environment variables containing tool inputs. Be careful with hooks that log or forward this data -- tool inputs may contain sensitive information like file contents or API keys.
 </Annotation>
 
-**Status: Implemented.** The `HookRunner` in `rust/crates/runtime/src/hooks.rs` is fully functional with tests covering allow, deny, and warn scenarios.
+**Status: Implemented.** The `HookRunner` in <SourceLink file="rust/crates/runtime/src/hooks.rs" /> is fully functional with tests covering allow, deny, and warn scenarios.
 
 ---
 
@@ -193,7 +194,7 @@ All of this is described in a manifest file at `.claw-plugin/plugin.json`.
 
 ### The Key Types
 
-From `rust/crates/plugins/src/lib.rs`:
+From <SourceLink file="rust/crates/plugins/src/lib.rs" />:
 
 ```rust
 pub struct PluginMetadata {
@@ -324,7 +325,7 @@ mcp__<server_name>__<tool_name>
 
 For example, if you configure a server called `"github"` and it provides a tool called `"list_repos"`, the tool is registered as `mcp__github__list_repos`.
 
-The server name is normalized first -- spaces become underscores and special characters are removed. This logic lives in `rust/crates/runtime/src/mcp.rs`:
+The server name is normalized first -- spaces become underscores and special characters are removed. This logic lives in <SourceLink file="rust/crates/runtime/src/mcp.rs" />:
 
 ```rust
 pub fn mcp_tool_name(server_name: &str, tool_name: &str) -> String {
@@ -359,7 +360,7 @@ Each server entry maps a name to its connection details. For stdio servers, you 
 
 ### How MCP Integration Works
 
-The stdio transport implementation lives in `rust/crates/runtime/src/mcp_stdio.rs`. Here's how a tool call flows through the system:
+The stdio transport implementation lives in <SourceLink file="rust/crates/runtime/src/mcp_stdio.rs" />. Here's how a tool call flows through the system:
 
 ```mermaid
 sequenceDiagram

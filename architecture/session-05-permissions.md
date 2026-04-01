@@ -3,6 +3,7 @@ import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
 import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
 import Quiz from '../.vitepress/theme/Quiz.vue'
+import SourceLink from '../.vitepress/theme/SourceLink.vue'
 </script>
 
 # Session 5: The Permission System
@@ -87,7 +88,7 @@ Everything. The AI can run arbitrary bash commands, fetch web pages, launch sub-
 
 ## The Key Structures
 
-Let's look at the actual Rust types that make this work. All of these live in `rust/crates/runtime/src/permissions.rs`.
+Let's look at the actual Rust types that make this work. All of these live in <SourceLink file="rust/crates/runtime/src/permissions.rs" />.
 
 ### The mode enum
 

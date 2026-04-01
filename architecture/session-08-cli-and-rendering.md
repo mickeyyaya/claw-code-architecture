@@ -3,6 +3,7 @@ import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
 import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
 import Quiz from '../.vitepress/theme/Quiz.vue'
+import SourceLink from '../.vitepress/theme/SourceLink.vue'
 </script>
 
 # Session 8: The CLI and Terminal Rendering
@@ -27,7 +28,7 @@ Imagine a restaurant with a front desk. When you walk in, the host asks: "Table 
 
 ### How main() Starts
 
-The program's entry point lives in `rust/crates/claw-cli/src/main.rs`. Here's the chain of function calls:
+The program's entry point lives in <SourceLink file="rust/crates/claw-cli/src/main.rs" />. Here's the chain of function calls:
 
 ```
 main() (line 60)
@@ -160,7 +161,7 @@ Imagine a text editor that's also a command line. You can type normally, but you
 
 ### The LineEditor
 
-The input handling lives in `rust/crates/claw-cli/src/input.rs` (1,119 lines). The `LineEditor` supports several modes, inspired by the Vim text editor:
+The input handling lives in <SourceLink file="rust/crates/claw-cli/src/input.rs" /> (1,119 lines). The `LineEditor` supports several modes, inspired by the Vim text editor:
 
 - **Insert mode** -- Normal typing. What you'd expect.
 - **Normal mode** -- Vim-style navigation (press `Esc` to enter, `i` to go back to Insert)
@@ -207,7 +208,7 @@ Imagine watching a live sports broadcast. The commentator speaks one word at a t
 
 ### The Key Components
 
-The rendering system lives in `rust/crates/claw-cli/src/render.rs` (797 lines). It has four main components:
+The rendering system lives in <SourceLink file="rust/crates/claw-cli/src/render.rs" /> (797 lines). It has four main components:
 
 **1. TerminalRenderer** -- The main renderer that converts markdown to styled terminal output:
 
@@ -270,7 +271,7 @@ Imagine a chat app where you can type `/giphy dancing cat` to insert a GIF inste
 
 ### The Command System
 
-Slash commands are defined in `rust/crates/commands/src/lib.rs` (2,511 lines). There are 27 registered commands. Here are the most important ones:
+Slash commands are defined in <SourceLink file="rust/crates/commands/src/lib.rs" /> (2,511 lines). There are 27 registered commands. Here are the most important ones:
 
 | Command | What it does |
 |---------|-------------|

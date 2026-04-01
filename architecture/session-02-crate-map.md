@@ -3,6 +3,7 @@ import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
 import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
 import Quiz from '../.vitepress/theme/Quiz.vue'
+import SourceLink from '../.vitepress/theme/SourceLink.vue'
 </script>
 
 # Session 2: The Crate Map
@@ -42,7 +43,7 @@ This is the **main binary** — the program you actually run when you type `claw
 - Running the REPL (Read-Eval-Print Loop) — the interactive session
 - Showing a spinner while the AI thinks
 
-**Key files:** `main.rs` (4,786 lines), `input.rs`, `render.rs`
+**Key files:** <SourceLink file="rust/crates/claw-cli/src/main.rs" /> (4,786 lines), <SourceLink file="rust/crates/claw-cli/src/input.rs" />, <SourceLink file="rust/crates/claw-cli/src/render.rs" />
 
 ### 2. `runtime` — The Brain
 
@@ -51,14 +52,14 @@ This is the **main binary** — the program you actually run when you type `claw
 This is the **core engine**. It contains the agentic loop ([Session 3](session-03-conversation-loop.md)), configuration loading, session persistence, permissions, hooks, and more. If `claw-cli` is the face of the operation, `runtime` is the brains.
 
 **Key modules:**
-- `conversation.rs` — The agentic loop
-- `config.rs` — Configuration file discovery and merging
-- `session.rs` — Saving/loading conversation history
-- `permissions.rs` — Tool authorization
-- `hooks.rs` — Pre/post tool-use hooks
-- `prompt.rs` — System prompt assembly
-- `usage.rs` — Token and cost tracking
-- `oauth.rs` — Authentication
+- <SourceLink file="rust/crates/runtime/src/conversation.rs" /> — The agentic loop
+- <SourceLink file="rust/crates/runtime/src/config.rs" /> — Configuration file discovery and merging
+- <SourceLink file="rust/crates/runtime/src/session.rs" /> — Saving/loading conversation history
+- <SourceLink file="rust/crates/runtime/src/permissions.rs" /> — Tool authorization
+- <SourceLink file="rust/crates/runtime/src/hooks.rs" /> — Pre/post tool-use hooks
+- <SourceLink file="rust/crates/runtime/src/prompt.rs" /> — System prompt assembly
+- <SourceLink file="rust/crates/runtime/src/usage.rs" /> — Token and cost tracking
+- <SourceLink file="rust/crates/runtime/src/oauth.rs" /> — Authentication
 
 <Annotation type="detail" title="What are generics?">
 You'll see Rust code like `ConversationRuntime&lt;C, T&gt;` in the runtime crate. Generics are like a form letter with blanks: "Dear _____, thank you for your _____." The letter's structure stays the same no matter what you fill in. The `&lt;C, T&gt;` are those blanks — they let you write one piece of code that works with any type that fits the right "shape" (called a trait). This means `ConversationRuntime` doesn't need to know whether it's talking to a real API or a test mock.
@@ -74,7 +75,7 @@ This crate handles all communication with the AI service. It knows how to:
 - Handle authentication (API keys, OAuth tokens)
 - Retry failed requests with exponential backoff
 
-**Key files:** `client.rs`, `sse.rs`, `types.rs`, `providers/claw_provider.rs`
+**Key files:** <SourceLink file="rust/crates/api/src/client.rs" />, <SourceLink file="rust/crates/api/src/sse.rs" />, <SourceLink file="rust/crates/api/src/types.rs" />, `providers/claw_provider.rs`
 
 ### 4. `tools` — The Toolbox
 
@@ -82,7 +83,7 @@ This crate handles all communication with the AI service. It knows how to:
 
 This crate defines and manages the 14 built-in tools the AI can use. Each tool has a name, a description, a JSON Schema for its inputs, and a required permission level. The `GlobalToolRegistry` keeps track of all available tools (built-in + plugins).
 
-**Key file:** `lib.rs` (4,469 lines)
+**Key file:** <SourceLink file="rust/crates/tools/src/lib.rs" /> (4,469 lines)
 
 ### 5. `commands` — The Menu Board
 
@@ -90,7 +91,7 @@ This crate defines and manages the 14 built-in tools the AI can use. Each tool h
 
 This crate defines 27 slash commands that you type directly (not the AI). Things like `/compact` to shrink conversation history, `/model` to switch AI models, `/diff` to see git changes.
 
-**Key file:** `lib.rs` (2,511 lines)
+**Key file:** <SourceLink file="rust/crates/commands/src/lib.rs" /> (2,511 lines)
 
 ### 6. `plugins` — The Extension Rack
 
@@ -98,7 +99,7 @@ This crate defines 27 slash commands that you type directly (not the AI). Things
 
 This crate defines how external plugins work — their manifest format, how they provide additional tools, and how plugin hooks integrate with the system. Currently **scaffolded** (the structure exists but not all runtime behavior works yet).
 
-**Key file:** `lib.rs`
+**Key file:** <SourceLink file="rust/crates/plugins/src/lib.rs" />
 
 ### 7. `server` — The Remote Window
 
@@ -106,7 +107,7 @@ This crate defines how external plugins work — their manifest format, how they
 
 An Axum-based HTTP server that exposes Claw Code's functionality via API endpoints. You can create sessions, send messages, and stream responses over SSE — useful for building UIs on top of Claw Code.
 
-**Key file:** `lib.rs`
+**Key file:** <SourceLink file="rust/crates/server/src/lib.rs" />
 
 ### 8. `lsp` — The Editor Bridge
 
@@ -114,7 +115,7 @@ An Axum-based HTTP server that exposes Claw Code's functionality via API endpoin
 
 LSP (Language Server Protocol) is a standard that code editors use. This crate lets Claw Code talk to language servers to get things like "go to definition" and "find references" — enriching the AI's understanding of your code.
 
-**Key file:** `client.rs`
+**Key file:** <SourceLink file="rust/crates/lsp/src/client.rs" />
 
 ### 9. `compat-harness` — The Comparison Tool
 
@@ -122,7 +123,7 @@ LSP (Language Server Protocol) is a standard that code editors use. This crate l
 
 This crate reads the upstream TypeScript source (when available) and extracts lists of tools, commands, and bootstrap phases. It's used for parity auditing — making sure the Rust rewrite covers everything the original did.
 
-**Key file:** `lib.rs`
+**Key file:** <SourceLink file="rust/crates/compat-harness/src/lib.rs" />
 
 <Annotation type="analogy" title="Why split into crates?">
 Imagine a restaurant where one person does everything: takes orders, cooks, washes dishes, manages the books, and greets customers. If that person gets sick, everything stops. Now imagine a restaurant with specialized staff — a host, a chef, a dishwasher, and an accountant. Each person can be trained, replaced, or improved independently. Crates work the same way: each one has a focused job, can be tested in isolation, and can be changed without breaking unrelated parts of the system.

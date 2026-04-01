@@ -3,6 +3,7 @@ import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
 import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
 import Quiz from '../.vitepress/theme/Quiz.vue'
+import SourceLink from '../.vitepress/theme/SourceLink.vue'
 </script>
 
 # Session 7: Streaming and the API Client
@@ -76,7 +77,7 @@ SSE is like a live news ticker scrolling across the bottom of a TV screen. Each 
 
 ## Part 2: The API Crate Architecture
 
-Source files: `rust/crates/api/src/`
+Source files: <SourceLink file="rust/crates/api/src/client.rs" />
 
 The `api` crate is responsible for everything related to talking to AI providers over the network. It's colored blue in our architecture diagrams because it sits at the bottom of the dependency chain -- the runtime depends on it, but it depends on nothing else in the workspace.
 
@@ -139,7 +140,7 @@ Most users will use `ApiKey` -- you set your `ANTHROPIC_API_KEY` environment var
 
 ## Part 3: The SSE Parser
 
-Source file: `rust/crates/api/src/sse.rs`
+Source file: <SourceLink file="rust/crates/api/src/sse.rs" />
 
 ### The Analogy
 
@@ -243,7 +244,7 @@ The AI builds tool-call JSON incrementally via `InputJsonDelta`. This means the 
 
 Remember from [Session 3](session-03-conversation-loop.md) that the `ConversationRuntime` orchestrates the agentic loop. The runtime doesn't work with `StreamEvent` directly -- those are too low-level and API-specific. Instead, stream events are translated into simpler `AssistantEvent`s.
 
-This translation happens in the streaming layer of `claw-cli/src/main.rs`:
+This translation happens in the streaming layer of <SourceLink file="rust/crates/claw-cli/src/main.rs" />:
 
 ```rust
 pub enum AssistantEvent {

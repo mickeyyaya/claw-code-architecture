@@ -3,6 +3,7 @@ import Annotation from '../.vitepress/theme/Annotation.vue'
 import SessionNav from '../.vitepress/theme/SessionNav.vue'
 import WhyItWorks from '../.vitepress/theme/WhyItWorks.vue'
 import Quiz from '../.vitepress/theme/Quiz.vue'
+import SourceLink from '../.vitepress/theme/SourceLink.vue'
 </script>
 
 # Session 3: The Conversation Loop
@@ -37,7 +38,7 @@ This is the **agentic loop**.
 
 ## Meet `ConversationRuntime`
 
-The agentic loop lives in `rust/crates/runtime/src/conversation.rs`. The main struct looks like this:
+The agentic loop lives in <SourceLink file="rust/crates/runtime/src/conversation.rs" />. The main struct looks like this:
 
 ```rust
 pub struct ConversationRuntime<C: ApiClient, T: ToolExecutor> {
