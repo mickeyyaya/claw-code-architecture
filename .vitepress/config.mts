@@ -72,7 +72,7 @@ export default withMermaid(
         provider: 'local'
       },
       socialLinks: [
-        { icon: 'github', link: 'https://github.com/instructkr/claw-code' }
+        { icon: 'github', link: 'https://github.com/ultraworkers/claw-code' }
       ],
       footer: {
         message: 'Interactive Architecture Guide',

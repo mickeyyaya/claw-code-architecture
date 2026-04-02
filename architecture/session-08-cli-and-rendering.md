@@ -28,7 +28,7 @@ Imagine a restaurant with a front desk. When you walk in, the host asks: "Table 
 
 ### How main() Starts
 
-The program's entry point lives in <SourceLink file="rust/crates/claw-cli/src/main.rs" />. Here's the chain of function calls:
+The program's entry point lives in <SourceLink file="rust/crates/claw-cli/src/main.rs" /> (5,200+ lines). Here's the chain of function calls:
 
 ```
 main() (line 60)
@@ -161,7 +161,7 @@ Imagine a text editor that's also a command line. You can type normally, but you
 
 ### The LineEditor
 
-The input handling lives in <SourceLink file="rust/crates/claw-cli/src/input.rs" /> (1,119 lines). The `LineEditor` supports several modes, inspired by the Vim text editor:
+The input handling lives in <SourceLink file="rust/crates/claw-cli/src/input.rs" /> (1,200+ lines). The `LineEditor` supports several modes, inspired by the Vim text editor:
 
 - **Insert mode** -- Normal typing. What you'd expect.
 - **Normal mode** -- Vim-style navigation (press `Esc` to enter, `i` to go back to Insert)
@@ -179,6 +179,11 @@ Even if you've never used Vim, the default Insert mode works like any normal tex
 | `Up/Down arrows` | Browse command history |
 | `Ctrl+C` | Cancel current input |
 | `Ctrl+D` | Exit the session |
+| `Tab` | Cycle through matching slash command completions |
+
+### Tab Completion Cycling
+
+When you start typing a slash command and press `Tab`, the `CompletionState` struct tracks your position in the list of matching completions. Pressing `Tab` repeatedly cycles through all matches rather than just completing to the first one. For example, typing `/co` and pressing `Tab` might cycle through `/compact`, `/config`, `/cost`, and `/commit`.
 
 ### ReadOutcome
 
@@ -271,7 +276,15 @@ Imagine a chat app where you can type `/giphy dancing cat` to insert a GIF inste
 
 ### The Command System
 
-Slash commands are defined in <SourceLink file="rust/crates/commands/src/lib.rs" /> (2,511 lines). There are 27 registered commands. Here are the most important ones:
+Slash commands are defined in <SourceLink file="rust/crates/commands/src/lib.rs" /> (2,700+ lines). Commands are organized into 5 categories via the `SlashCommandCategory` enum:
+
+- **Core** -- essential commands like `/help`, `/status`, `/compact`, `/model`, `/permissions`, `/cost`
+- **Workspace** -- project-related commands like `/config`, `/memory`, `/init`, `/diff`, `/version`, `/agents`, `/skills`
+- **Session** -- conversation management like `/clear`, `/resume`, `/export`, `/session`
+- **Git** -- version control commands like `/branch`, `/worktree`, `/commit`, `/commit-push-pr`, `/pr`, `/issue`
+- **Automation** -- advanced commands like `/bughunter`, `/ultraplan`, `/teleport`, `/debug-tool-call`, `/plugins`
+
+Here are some of the most important ones:
 
 | Command | What it does |
 |---------|-------------|
@@ -292,9 +305,11 @@ When you type something that starts with `/`, two things happen:
 
 1. **Parsing** -- `SlashCommand::parse()` splits your input into the command name and any arguments. For example, `/model sonnet` becomes command = `model`, args = `sonnet`.
 
-2. **Dispatching** -- `handle_repl_command()` matches the command name against the 27 registered commands and calls the right handler function.
+2. **Dispatching** -- `handle_repl_command()` matches the command name against the registered commands and calls the right handler function.
 
-If the command name doesn't match anything, you get a helpful error message listing similar commands (in case it was a typo).
+If the command name doesn't match anything, the `suggest_slash_commands()` function uses Levenshtein distance to find similar commands and suggests them. For example, typing `/stauts` would suggest `/status`. This fuzzy matching makes it much harder to get stuck on a typo.
+
+Errors from slash commands are now displayed using the `render_cli_error()` function, which provides structured output with **Problem** and **Help** lines instead of a plain error message. Several commands -- `/model`, `/permissions`, `/cost`, `/resume` -- also show improved output with model aliases, effect descriptions, and "Next" action hints.
 
 ---
 

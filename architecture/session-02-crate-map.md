@@ -43,7 +43,7 @@ This is the **main binary** — the program you actually run when you type `claw
 - Running the REPL (Read-Eval-Print Loop) — the interactive session
 - Showing a spinner while the AI thinks
 
-**Key files:** <SourceLink file="rust/crates/claw-cli/src/main.rs" /> (4,786 lines), <SourceLink file="rust/crates/claw-cli/src/input.rs" />, <SourceLink file="rust/crates/claw-cli/src/render.rs" />
+**Key files:** <SourceLink file="rust/crates/claw-cli/src/main.rs" /> (5,200+ lines), <SourceLink file="rust/crates/claw-cli/src/input.rs" /> (1,200+ lines), <SourceLink file="rust/crates/claw-cli/src/render.rs" />
 
 ### 2. `runtime` — The Brain
 
@@ -89,9 +89,9 @@ This crate defines and manages the 14 built-in tools the AI can use. Each tool h
 
 **Analogy:** The menu of special actions you (the human) can trigger with slash commands like `/help` or `/status`.
 
-This crate defines 27 slash commands that you type directly (not the AI). Things like `/compact` to shrink conversation history, `/model` to switch AI models, `/diff` to see git changes.
+This crate defines the slash commands that you type directly (not the AI). Things like `/compact` to shrink conversation history, `/model` to switch AI models, `/diff` to see git changes. Commands are organized into 5 categories: **Core**, **Workspace**, **Session**, **Git**, and **Automation**.
 
-**Key file:** <SourceLink file="rust/crates/commands/src/lib.rs" /> (2,511 lines)
+**Key file:** <SourceLink file="rust/crates/commands/src/lib.rs" /> (2,700+ lines)
 
 ### 6. `plugins` — The Extension Rack
 
@@ -206,10 +206,10 @@ Not all crates are equal in size. Here's a rough breakdown:
 
 ```mermaid
 pie title Lines of Code by Crate (approximate)
-    "claw-cli" : 7000
+    "claw-cli" : 7600
     "runtime" : 5500
     "tools" : 4500
-    "commands" : 2500
+    "commands" : 2700
     "api" : 3500
     "plugins" : 1500
     "server" : 450
@@ -229,7 +229,7 @@ The top three — `claw-cli`, `runtime`, and `tools` — contain about 70% of al
 | `runtime` | Brain | Agentic loop, config, sessions, permissions | `conversation.rs`, `config.rs`, `session.rs` |
 | `api` | Phone Line | HTTP client, SSE streaming, auth | `client.rs`, `sse.rs`, `types.rs` |
 | `tools` | Toolbox | 14 built-in tools, tool registry | `lib.rs` |
-| `commands` | Menu Board | 27 slash commands | `lib.rs` |
+| `commands` | Menu Board | Slash commands (5 categories) | `lib.rs` |
 | `plugins` | Extension Rack | Plugin manifest, plugin tools | `lib.rs` |
 | `server` | Remote Window | HTTP/SSE server | `lib.rs` |
 | `lsp` | Editor Bridge | Language server client | `client.rs` |

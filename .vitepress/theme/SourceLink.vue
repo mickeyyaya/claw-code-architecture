@@ -5,7 +5,7 @@ const props = defineProps<{
   lines?: string
 }>()
 
-const GITHUB_BASE = 'https://github.com/instructkr/claw-code/blob/main'
+const GITHUB_BASE = 'https://github.com/ultraworkers/claw-code/blob/main'
 
 const fullPath = props.file.startsWith('rust/') || props.file.startsWith('src/')
   ? props.file
