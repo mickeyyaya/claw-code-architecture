@@ -155,12 +155,12 @@ flowchart TD
     MoreTools -->|Yes| ForEach
     MoreTools -->|No| SendAPI
 
-    style Start fill:#e8daef,stroke:#7d3c98
-    style Done fill:#d5f5e3,stroke:#27ae60
-    style CheckTools fill:#fdebd0,stroke:#e67e22
-    style CheckPerm fill:#fadbd8,stroke:#e74c3c
-    style HookAllow fill:#fadbd8,stroke:#e74c3c
-    style ExecTool fill:#d6eaf8,stroke:#2980b9
+    style Start fill:#e8daef,stroke:#7d3c98,color:#1a1a2e
+    style Done fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style CheckTools fill:#fdebd0,stroke:#e67e22,color:#1a1a2e
+    style CheckPerm fill:#fadbd8,stroke:#e74c3c,color:#1a1a2e
+    style HookAllow fill:#fadbd8,stroke:#e74c3c,color:#1a1a2e
+    style ExecTool fill:#d6eaf8,stroke:#2980b9,color:#1a1a2e
 ```
 
 Let's walk through this in plain English:
@@ -270,9 +270,9 @@ graph LR
     A --- TU
     T --- TR
 
-    style U fill:#e8daef,stroke:#7d3c98
-    style A fill:#d5f5e3,stroke:#27ae60
-    style T fill:#d6eaf8,stroke:#2980b9
+    style U fill:#e8daef,stroke:#7d3c98,color:#1a1a2e
+    style A fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style T fill:#d6eaf8,stroke:#2980b9,color:#1a1a2e
 ```
 
 - **User messages** contain text blocks (what you typed)

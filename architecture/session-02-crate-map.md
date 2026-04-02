@@ -168,15 +168,15 @@ graph TD
     click API "/architecture/session-07-streaming" "Streaming & API"
     click PLUG "/architecture/session-09-hooks-plugins-mcp" "Hooks, Plugins, MCP"
 
-    style CLI fill:#e8daef,stroke:#7d3c98
-    style RT fill:#d5f5e3,stroke:#27ae60
-    style API fill:#d6eaf8,stroke:#2980b9
-    style TOOLS fill:#fdebd0,stroke:#e67e22
-    style CMD fill:#fdebd0,stroke:#e67e22
-    style PLUG fill:#fadbd8,stroke:#e74c3c
-    style LSP fill:#d6eaf8,stroke:#2980b9
-    style SRV fill:#d6eaf8,stroke:#2980b9
-    style COMPAT fill:#f2f3f4,stroke:#95a5a6
+    style CLI fill:#e8daef,stroke:#7d3c98,color:#1a1a2e
+    style RT fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style API fill:#d6eaf8,stroke:#2980b9,color:#1a1a2e
+    style TOOLS fill:#fdebd0,stroke:#e67e22,color:#1a1a2e
+    style CMD fill:#fdebd0,stroke:#e67e22,color:#1a1a2e
+    style PLUG fill:#fadbd8,stroke:#e74c3c,color:#1a1a2e
+    style LSP fill:#d6eaf8,stroke:#2980b9,color:#1a1a2e
+    style SRV fill:#d6eaf8,stroke:#2980b9,color:#1a1a2e
+    style COMPAT fill:#f2f3f4,stroke:#95a5a6,color:#1a1a2e
 ```
 
 **Reading the arrows:** An arrow from A to B means "A uses B." For example, `claw-cli` uses `runtime`, `commands`, `tools`, `api`, and `plugins`.

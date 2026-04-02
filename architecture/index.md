@@ -52,16 +52,16 @@ graph TD
     click S9 "/architecture/session-09-hooks-plugins-mcp" "Session 9"
     click S10 "/architecture/session-10-testing-patterns" "Session 10"
 
-    style S1 fill:#e8daef,stroke:#7d3c98
-    style S2 fill:#e8daef,stroke:#7d3c98
-    style S3 fill:#d5f5e3,stroke:#27ae60
-    style S4 fill:#fdebd0,stroke:#e67e22
-    style S5 fill:#d5f5e3,stroke:#27ae60
-    style S6 fill:#d5f5e3,stroke:#27ae60
-    style S7 fill:#d6eaf8,stroke:#2980b9
-    style S8 fill:#e8daef,stroke:#7d3c98
-    style S9 fill:#fadbd8,stroke:#e74c3c
-    style S10 fill:#d5f5e3,stroke:#27ae60
+    style S1 fill:#e8daef,stroke:#7d3c98,color:#1a1a2e
+    style S2 fill:#e8daef,stroke:#7d3c98,color:#1a1a2e
+    style S3 fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style S4 fill:#fdebd0,stroke:#e67e22,color:#1a1a2e
+    style S5 fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style S6 fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style S7 fill:#d6eaf8,stroke:#2980b9,color:#1a1a2e
+    style S8 fill:#e8daef,stroke:#7d3c98,color:#1a1a2e
+    style S9 fill:#fadbd8,stroke:#e74c3c,color:#1a1a2e
+    style S10 fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
 ```
 
 ## Sessions

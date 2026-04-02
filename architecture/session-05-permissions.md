@@ -46,9 +46,9 @@ graph BT
 
     RO --> WW --> DFA
 
-    style RO fill:#d5f5e3,stroke:#27ae60
-    style WW fill:#fdebd0,stroke:#e67e22
-    style DFA fill:#fadbd8,stroke:#e74c3c
+    style RO fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style WW fill:#fdebd0,stroke:#e67e22,color:#1a1a2e
+    style DFA fill:#fadbd8,stroke:#e74c3c,color:#1a1a2e
 ```
 
 ### ReadOnly — "Look but don't touch"
@@ -172,12 +172,12 @@ flowchart TD
     UserSays -->|Yes| Allow
     UserSays -->|No| UserDeny(["Deny\n(user rejected)"])
 
-    style Start fill:#e8daef,stroke:#7d3c98
-    style Allow fill:#d5f5e3,stroke:#27ae60
-    style AutoDeny fill:#fadbd8,stroke:#e74c3c
-    style ModeDeny fill:#fadbd8,stroke:#e74c3c
-    style UserDeny fill:#fadbd8,stroke:#e74c3c
-    style AskUser fill:#fdebd0,stroke:#e67e22
+    style Start fill:#e8daef,stroke:#7d3c98,color:#1a1a2e
+    style Allow fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style AutoDeny fill:#fadbd8,stroke:#e74c3c,color:#1a1a2e
+    style ModeDeny fill:#fadbd8,stroke:#e74c3c,color:#1a1a2e
+    style UserDeny fill:#fadbd8,stroke:#e74c3c,color:#1a1a2e
+    style AskUser fill:#fdebd0,stroke:#e67e22,color:#1a1a2e
 ```
 
 Let's walk through the logic step by step:

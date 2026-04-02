@@ -151,12 +151,12 @@ graph TD
     Crates --> LSP
     Crates --> Compat
 
-    style Rust fill:#d5f5e3,stroke:#27ae60
-    style Src fill:#fdebd0,stroke:#e67e22
-    style ClawCli fill:#e8daef,stroke:#7d3c98
-    style Runtime fill:#d5f5e3,stroke:#27ae60
-    style Tools fill:#fdebd0,stroke:#e67e22
-    style API fill:#d6eaf8,stroke:#2980b9
+    style Rust fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style Src fill:#fdebd0,stroke:#e67e22,color:#1a1a2e
+    style ClawCli fill:#e8daef,stroke:#7d3c98,color:#1a1a2e
+    style Runtime fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style Tools fill:#fdebd0,stroke:#e67e22,color:#1a1a2e
+    style API fill:#d6eaf8,stroke:#2980b9,color:#1a1a2e
 ```
 
 ### Important files at the root

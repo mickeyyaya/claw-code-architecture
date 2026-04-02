@@ -86,15 +86,15 @@ graph LR
         RT2 --> PP2
     end
 
-    style RT1 fill:#d5f5e3,stroke:#27ae60
-    style AC1 fill:#d6eaf8,stroke:#2980b9
-    style TE1 fill:#fdebd0,stroke:#e67e22
-    style PP1 fill:#d5f5e3,stroke:#27ae60
+    style RT1 fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style AC1 fill:#d6eaf8,stroke:#2980b9,color:#1a1a2e
+    style TE1 fill:#fdebd0,stroke:#e67e22,color:#1a1a2e
+    style PP1 fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
 
-    style RT2 fill:#d5f5e3,stroke:#27ae60
-    style AC2 fill:#d6eaf8,stroke:#2980b9
-    style TE2 fill:#fdebd0,stroke:#e67e22
-    style PP2 fill:#d5f5e3,stroke:#27ae60
+    style RT2 fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
+    style AC2 fill:#d6eaf8,stroke:#2980b9,color:#1a1a2e
+    style TE2 fill:#fdebd0,stroke:#e67e22,color:#1a1a2e
+    style PP2 fill:#d5f5e3,stroke:#27ae60,color:#1a1a2e
 ```
 
 Both sides use the **exact same** `ConversationRuntime`. The green boxes are runtime code, the blue boxes are API code, and the orange boxes are tool code. The only difference is which concrete types fill the generic slots.

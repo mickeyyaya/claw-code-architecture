@@ -1,12 +1,21 @@
 import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
-import basicSsl from '@vitejs/plugin-basic-ssl'
+import fs from 'node:fs'
+import path from 'node:path'
+
+const certDir = path.resolve(__dirname, '../.certs')
+const hasCerts = fs.existsSync(path.join(certDir, 'cert.pem'))
 
 export default withMermaid(
   defineConfig({
     title: 'Claw Code Architecture',
     vite: {
-      plugins: [basicSsl()],
+      server: hasCerts ? {
+        https: {
+          key: fs.readFileSync(path.join(certDir, 'key.pem')),
+          cert: fs.readFileSync(path.join(certDir, 'cert.pem')),
+        },
+      } : {},
     },
     description: 'Interactive guide to the Claw Code project architecture',
     base: '/',

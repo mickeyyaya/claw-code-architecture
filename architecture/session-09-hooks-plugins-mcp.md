@@ -263,7 +263,7 @@ flowchart TD
     end
 
     subgraph Registration["3. Registration"]
-        style Registration fill:#90EE90
+        style Registration fill:#90EE90,color:#1a1a2e
         M1 --> |tools| GTR[GlobalToolRegistry]
         M2 --> |tools| GTR
         M1 --> |hooks| HP[Hook Pipeline]
@@ -271,7 +271,7 @@ flowchart TD
     end
 
     subgraph Lifecycle["4. Lifecycle"]
-        style Lifecycle fill:#FFD700
+        style Lifecycle fill:#FFD700,color:#1a1a2e
         M1 --> |Init| INIT["Run startup commands"]
         M2 --> |Init| INIT
         INIT --> |on exit| SHUT["Run shutdown commands"]
@@ -432,7 +432,7 @@ All three extension mechanisms -- built-in tools, plugins, and MCP servers -- co
 ```mermaid
 flowchart LR
     subgraph BuiltIn["Built-in Tools"]
-        style BuiltIn fill:#FFA500
+        style BuiltIn fill:#FFA500,color:#1a1a2e
         B1["Bash"]
         B2["ReadFile"]
         B3["EditFile"]
@@ -440,13 +440,13 @@ flowchart LR
     end
 
     subgraph Plugins["Plugin Tools (planned)"]
-        style Plugins fill:#FF9999
+        style Plugins fill:#FF9999,color:#1a1a2e
         P1["plugin_tool_a"]
         P2["plugin_tool_b"]
     end
 
     subgraph MCP["MCP Server Tools"]
-        style MCP fill:#FF9999
+        style MCP fill:#FF9999,color:#1a1a2e
         M1["mcp__github__list_repos"]
         M2["mcp__db__query"]
     end
