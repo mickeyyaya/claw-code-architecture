@@ -82,6 +82,19 @@ export default withMermaid(
     mermaid: {
       theme: 'default',
       securityLevel: 'loose',
+      flowchart: {
+        padding: 16,
+        nodeSpacing: 30,
+        rankSpacing: 40,
+        useMaxWidth: false,
+        htmlLabels: true,
+        wrappingWidth: 200,
+      },
+      sequence: {
+        useMaxWidth: false,
+        boxMargin: 8,
+        noteMargin: 10,
+      },
     },
     mermaidPlugin: {
       class: 'mermaid-diagram',

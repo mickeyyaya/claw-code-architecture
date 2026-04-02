@@ -53,6 +53,39 @@
 .mermaid svg {
   max-width: 100%;
   height: auto;
+  overflow: visible;
+}
+
+/* Prevent text clipping inside diagram nodes */
+.mermaid-diagram svg .node rect,
+.mermaid-diagram svg .node polygon,
+.mermaid-diagram svg .node circle,
+.mermaid-diagram svg .node .label,
+.mermaid svg .node rect,
+.mermaid svg .node polygon,
+.mermaid svg .node circle,
+.mermaid svg .node .label {
+  overflow: visible;
+}
+
+.mermaid-diagram svg .nodeLabel,
+.mermaid svg .nodeLabel,
+.mermaid-diagram svg .label,
+.mermaid svg .label {
+  overflow: visible !important;
+  white-space: pre-wrap !important;
+}
+
+/* Ensure flowchart nodes have enough padding for text */
+.mermaid-diagram svg .node foreignObject,
+.mermaid svg .node foreignObject {
+  overflow: visible !important;
+}
+
+.mermaid-diagram svg .node foreignObject div,
+.mermaid svg .node foreignObject div {
+  overflow: visible !important;
+  text-overflow: unset !important;
 }
 
 /* Make mermaid nodes interactive */
