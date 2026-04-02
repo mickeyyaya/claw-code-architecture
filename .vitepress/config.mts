@@ -1,9 +1,13 @@
 import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
+import basicSsl from '@vitejs/plugin-basic-ssl'
 
 export default withMermaid(
   defineConfig({
     title: 'Claw Code Architecture',
+    vite: {
+      plugins: [basicSsl()],
+    },
     description: 'Interactive guide to the Claw Code project architecture',
     base: '/',
     head: [
